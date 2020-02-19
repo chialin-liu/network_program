@@ -19,8 +19,15 @@ public class Echoer extends Thread{
       PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
       while(true){
         String echoString = input.readLine();
+        System.out.println("Received from client: "+ echoString);
         if(echoString.equals("exit")){
           break;
+        }
+        try{
+          Thread.sleep(2000);
+        }
+        catch(InterruptedException e) {
+          System.out.println("Interrupt");
         }
         output.println(echoString);
       }
